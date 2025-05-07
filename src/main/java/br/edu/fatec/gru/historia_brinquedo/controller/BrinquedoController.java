@@ -1,11 +1,10 @@
-package br.edu.fatec.gru.historia_brinquedo.controllerweb;
+package br.edu.fatec.gru.historia_brinquedo.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,9 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService2;
 import br.edu.fatec.gru.historia_brinquedo.model.Brinquedo;
 
-
 @RestController
-public class LojaController3 {
+public class BrinquedoController {
 	
 	@Autowired
 	private BrinquedoService2  brinquedoService;
