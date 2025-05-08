@@ -1,5 +1,9 @@
 package br.edu.fatec.gru.historia_brinquedo.model;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,20 +12,22 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table (name = "Brinquedos")
-public class Brinquedo {
+public class BrinquedoEntity {
 		@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
 		private String nome;
+		private String categoria;
 		private String marca;
 		private float preco;
 		
-		public Brinquedo() {
+		public BrinquedoEntity() {
 			
 		}
 		
-		public Brinquedo(String nome, int id, String marca, float preco) {
+		public BrinquedoEntity(String nome, int id, String categoria, String marca, float preco) {
 			this.nome = nome;
 			this.id = id;
+			this.categoria = categoria;
 			this.marca = marca;
 			this.preco = preco;
 		}
@@ -38,6 +44,12 @@ public class Brinquedo {
 		public void setId(int id) {
 			this.id = id;
 		}
+		public String getCategoria() {
+			return categoria;
+		}
+		public void setCategoria(String categoria) {
+			this.categoria = categoria;
+		}
 		public String getMarca() {
 			return marca;
 		}
@@ -52,14 +64,5 @@ public class Brinquedo {
 		public void setPreco(float preco) {
 			this.preco = preco;
 		}
-		
-		public String getImagemUrl() {
-			return imagemUrl;
-		}
-
-		public void setImagemUrl(String imagemUrl) {
-			this.imagemUrl = imagemUrl;
-		}
-		
 		
 }

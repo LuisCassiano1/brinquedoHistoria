@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService2;
-import br.edu.fatec.gru.historia_brinquedo.model.Brinquedo;
+import br.edu.fatec.gru.historia_brinquedo.model.BrinquedoEntity;
 
 @Controller
 public class NavegaController {

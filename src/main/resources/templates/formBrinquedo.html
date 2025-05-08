@@ -35,13 +35,18 @@
 	                </td>
 	            </tr>
 	            <tr>
-	                <th>DESCRIÇÃO:</th>
+	                <th>NOME:</th>
 	                <td><input type="text" th:field="*{descricao}" size="40" /></td>
 	            </tr>
-	            <tr>
-	                <th>CATEGORIA:</th>
-	                <td><input type="text" th:field="*{categoria}" size="40" /></td>
-	            </tr>
+				<tr>
+					<th>CATEGORIA:</th>
+					<td><select th:field="*{categoria}" size="1">
+							<option th:value="*{categoria}" th:text="*{categoria}"></option>
+							<option th:value="Pelucia" th:text="Pelúcia"></option>
+							<option th:value="QuebraCabecas" th:text="Quebra-Cabeças"></option>
+							<option th:value="HotWheels" th:text="Hot Wheels"></option>
+						</select>
+				</tr>
 	            <tr>
 	                <th>MARCA:</th>
 	                <td><input type="text" th:field="*{marca}" size="40" /></td>
