@@ -1,12 +1,12 @@
 package br.edu.fatec.gru.historia_brinquedo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import br.edu.fatec.gru.historia_brinquedo.model.BrinquedoEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
+import java.util.List;
 
-public interface BrinquedoRepository extends JpaRepository <BrinquedoEntity, Long> {
+public interface BrinquedoRepository extends JpaRepository<BrinquedoEntity, Long> {
 
+    // Consultar brinquedos pela categoria (campo "categoria")
+    List<BrinquedoEntity> findByCategoria(String categoria);
 }

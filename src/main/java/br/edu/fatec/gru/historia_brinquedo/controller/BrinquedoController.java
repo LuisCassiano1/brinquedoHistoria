@@ -3,76 +3,42 @@ package br.edu.fatec.gru.historia_brinquedo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService;
 import br.edu.fatec.gru.historia_brinquedo.model.BrinquedoEntity;
-import br.edu.fatec.gru.historia_brinquedo.model.UsuarioEntity;
-import br.edu.fatec.gru.historia_brinquedo.Service.UsuarioService;
+import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService;
 
 @RestController
-@RequestMapping("/brinquedos")
+@RequestMapping("/api/brinquedos")
+@CrossOrigin(origins = "*") // Permite chamadas de qualquer origem (útil para testes front-end locais)
 public class BrinquedoController {
 
     @Autowired
-    private BrinquedoService brinquedoService;
+    private BrinquedoService service;
 
-    @Autowired
-    private UsuarioService usuarioService;
-
-    @PostMapping("/{id}")
-    public ResponseEntity<Object> criar(@RequestBody BrinquedoEntity brinquedoEntity, @PathVariable Long id){
-        try{
-            if(!usuarioService.validar(id).isEmpty()){
-                return ResponseEntity.status(HttpStatus.CREATED).body(brinquedoService.criar(brinquedoEntity));
-            }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário inválido");
-        }catch (Exception ex){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
-    }
-
-    @GetMapping
-    public ResponseEntity<List<BrinquedoEntity>> listarTodos(){
-        return ResponseEntity.ok(brinquedoService.listarTodos());
-    }
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> ler(@PathVariable Long id){
-        try{
-            return ResponseEntity.ok(brinquedoService.ler(id));
-        }catch (Exception ex){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+    @PostMapping
+    public BrinquedoEntity criar(@RequestBody BrinquedoEntity brinquedo) {
+        return service.salvar(brinquedo);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> editar(@RequestBody BrinquedoEntity brinquedoEntity, @PathVariable Long id){
-        try{
-            brinquedoEntity.setId(id);
-            return ResponseEntity.status(HttpStatus.OK).body(brinquedoService.editar(brinquedoEntity));
-        }catch (Exception ex){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+    public BrinquedoEntity editar(@PathVariable Long id, @RequestBody BrinquedoEntity brinquedo) {
+        brinquedo.setId(id);
+        return service.salvar(brinquedo);
+    }
+
+    @GetMapping
+    public List<BrinquedoEntity> listar() {
+        return service.listarTodos();
+    }
+
+    @GetMapping("/{id}")
+    public BrinquedoEntity buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletar(@PathVariable Long id){
-        try{
-            brinquedoService.deletar(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }catch (Exception ex){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
     }
 }
