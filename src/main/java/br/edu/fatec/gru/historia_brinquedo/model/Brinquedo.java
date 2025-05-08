@@ -53,6 +53,13 @@ public class Brinquedo {
 			this.preco = preco;
 		}
 		
+		public String getImagemUrl() {
+			return imagemUrl;
+		}
+
+		public void setImagemUrl(String imagemUrl) {
+			this.imagemUrl = imagemUrl;
+		}
 		
 		
 }
