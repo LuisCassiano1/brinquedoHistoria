@@ -3,11 +3,11 @@ use database brinquedoHistoria;
 CREATE TABLE tb_brinquedo (
     id BIGINT NOT NULL AUTO_INCREMENT,
     nome_produto VARCHAR(100) NOT NULL,
-    descricao_produto TEXT,
-    valor_produto DOUBLE NOT NULL,
-    avaliacao_produto INT,
+    categoria VARCHAR(100) NOT NULL,
+    marca VARCHAR(100) NOT NULL,
     url_imagem VARCHAR(255),
-    quantidade BIGINT,
+    valor_produto DOUBLE NOT NULL,
+    descricao_produto TEXT,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

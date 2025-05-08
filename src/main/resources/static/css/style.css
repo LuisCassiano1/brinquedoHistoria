@@ -3,6 +3,12 @@
     padding: 20px;
 }
 
+input[readonly] {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    cursor: not-allowed;
+}
+
 button {
     padding: 10px 15px;
     background-color: #3498db;
