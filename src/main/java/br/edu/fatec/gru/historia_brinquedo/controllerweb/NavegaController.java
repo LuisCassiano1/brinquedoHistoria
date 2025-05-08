@@ -9,21 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService2;
+import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService;
 import br.edu.fatec.gru.historia_brinquedo.model.BrinquedoEntity;
 
 @Controller
 public class NavegaController {
 	
 			@Autowired
-			private BrinquedoService2 brinquedoService;
+			private BrinquedoService brinquedoService;
 					
-			@GetMapping ("/") 
-			public String teste() {
-				return "teste";
-			}
 			
-			@GetMapping ("/home") 
+			
+			@GetMapping ({"/","/home"}) 
 			public String home() {
 				return "home";
 			}

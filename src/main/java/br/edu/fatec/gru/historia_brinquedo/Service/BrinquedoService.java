@@ -5,10 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.edu.fatec.gru.historia_brinquedo.model.BrinquedoEntity;
 import br.edu.fatec.gru.historia_brinquedo.repository.BrinquedoRepository;
-import br.edu.fatec.gru.historia_brinquedo.repository.BrinquedoRepository;
+import br.edu.fatec.gru.historia_brinquedo.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 

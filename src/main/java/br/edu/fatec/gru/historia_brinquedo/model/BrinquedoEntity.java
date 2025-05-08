@@ -15,8 +15,10 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "tb_brinquedo")
 public class BrinquedoEntity {
-		@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int id;
+	
+		@Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
 		
 		 @Column(name = "nome_produto", nullable = false, length = 100)
 		    private String nomeProduto;
@@ -50,18 +52,15 @@ public class BrinquedoEntity {
 	        this.descricaoProduto = descricaoProduto;    
 	    }
 
-		public int getId() {
-			return id;
-		}
-
-		public void setId(int id) {
-			this.id = id;
-		}
-
+		public Long getId() {
+	        return id;
+	    }
+		public void setId(Long id) {
+	        this.id = id;
+	    }
 		public String getNomeProduto() {
 			return nomeProduto;
 		}
-
 		public void setNomeProduto(String nomeProduto) {
 			this.nomeProduto = nomeProduto;
 		}
@@ -93,7 +92,8 @@ public class BrinquedoEntity {
 		public Double getValorProduto() {
 			return valorProduto;
 		}
-
+		
+		//@Positive(message "favor colocar um numero positivo")
 		public void setValorProduto(Double valorProduto) {
 			this.valorProduto = valorProduto;
 		}
@@ -106,5 +106,17 @@ public class BrinquedoEntity {
 			this.descricaoProduto = descricaoProduto;
 		}
 		
+		 @Override
+		    public String toString() {
+		        return "Brinquedo{" +
+		                "id=" + id +
+		                ", nomeProduto='" + nomeProduto + '\'' +
+		                ", categoriaProduto='" + categoriaProduto + '\'' +
+		                ", marcaProduto='" + marcaProduto + '\'' +
+		                ", urlImagem=" + urlImagem +
+		                ", valorProduto=" + valorProduto +
+		                ", descricaoProduto='" + descricaoProduto + '\'' +
+		                '}';
+		    }
 		
 }
