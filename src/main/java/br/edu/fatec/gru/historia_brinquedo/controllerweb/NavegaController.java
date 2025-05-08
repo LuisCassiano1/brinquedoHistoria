@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService2;
 import br.edu.fatec.gru.historia_brinquedo.model.Brinquedo;
@@ -16,16 +15,36 @@ import br.edu.fatec.gru.historia_brinquedo.model.Brinquedo;
 @Controller
 public class NavegaController {
 	
-	@Autowired
-	private BrinquedoService2 brinquedoService;
+			@Autowired
+			private BrinquedoService2 brinquedoService;
+					
+			@GetMapping ("/") 
+			public String teste() {
+				return "teste";
+			}
 			
-				@GetMapping ("/home") 
-				public String home() {
-					return "home";
-				}
-				
-				@GetMapping ("/adm") 
-				public String adm() {
-					return "adm";
-				}
+			@GetMapping ("/home") 
+			public String home() {
+				return "home";
+			}
+			
+			@GetMapping ("/adm") 
+			public String adm() {
+				return "adm";
+			}
+			
+			@GetMapping ("/sobre") 
+			public String sobre() {
+				return "sobre";
+			}
+			
+			@GetMapping ("/catalogo") 
+			public String catalogo() {
+				return "catalogo";
+			}
+			
+			@GetMapping ("/form-brinquedo") 
+			public String formBrinquedo() {
+				return "form-brinquedo";
+			}
 }

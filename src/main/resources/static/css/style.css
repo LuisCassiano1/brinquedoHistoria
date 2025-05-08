@@ -1,5 +1,15 @@
-body {
-    margin-left: 300px;
+.main-content {
+    margin-left: 320px;
+    padding: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
 #nome-loja {
@@ -73,6 +83,7 @@ body {
 
 .destaque .titulo-destaque {
     font-size: 30px;
+	display: flex;
     justify-items: center;          
     width: 100%;
     color: black;
