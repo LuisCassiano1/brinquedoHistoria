@@ -3,7 +3,8 @@ package br.edu.fatec.gru.historia_brinquedo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +20,11 @@ public class BrinquedoController {
 	private BrinquedoService2  brinquedoService;
 	
 	
-	@GetMapping ("/api/brinquedos")
-	public List <Brinquedo> todosOsBrinquedos() {
-		return brinquedoService.listall();
+	@PostMapping("/api/brinquedos")
+	public ResponseEntity<Brinquedo> inserir( @RequestBody Brinquedo brinquedo) {
+	    Brinquedo savedBrinquedo = brinquedoService.SaveBrinquedo(brinquedo);
+	   
+	    return ResponseEntity.status(HttpStatus.CREATED).body(savedBrinquedo);
 	}
 	
 	

@@ -1,0 +1,204 @@
+body {
+    margin-left: 300px;
+}
+
+#nome-loja {
+    font-size: 50px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    justify-content: center;
+    border-bottom: 3px solid #000;
+    padding-bottom: 40px;
+}
+
+#titulo-menu {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    justify-content: center;
+    display: inline-block;          
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar {
+    width: 300px;
+    height: 650px;
+    background-color: #6d6d6d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar .menu-item {
+    justify-items: center;
+    display: block;           
+    width: 100%;
+    color: white;
+    padding-block-end: 15px;
+    padding-block-start: 15px;
+    text-decoration: none;
+    font-size: 25px;
+    transition: background-color 0.3s;
+    text-align: flex-start;
+    border-top: 1px solid black;
+}
+
+.sidebar .menu-item:last-child {
+    border-bottom: 1px solid black;
+}
+.sidebar .menu-item:hover {
+    background-color: #555;
+}
+
+.sidebar {
+    border: 2px solid #555;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.destaque {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    text-align: flex-start;
+    top: 120px;
+    right: 0;
+    border-bottom: 2px solid #555;
+}
+
+.destaque .titulo-destaque {
+    font-size: 30px;
+    justify-items: center;          
+    width: 100%;
+    color: black;
+    transition: background-color 0.3s;
+    text-align: flex-start;
+    padding-left: 30px;
+}
+
+.destaque .titulo-destaque::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    left: 2%;
+    width: 95%;            /* Largura menor que total */
+    height: 1px;
+    background-color: #555;
+}
+
+.grid-container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    grid-template-rows: repeat(2, 1fr);     /* 2 linhas iguais */
+    width: 100%;
+    height: 20vh; /* ocupa a tela toda */
+    text-align: center;
+}
+
+.grid-item {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.grid-item img {
+    max-width: 50%; /* controla o tamanho das imagens */
+    height: auto;
+    cursor: pointer;
+}
+
+.grid-item a {
+    display: inline-block;
+    cursor: default; /* IMPORTANTE: evita que o link cause a mãozinha fora da imagem */
+}
+
+.grid-item figure {
+    margin: 0;
+    text-align: center;
+}
+
+.grid-item figcaption {
+    font-size: 16px;
+    color: #333;
+    margin-top: 8px;
+}
+
+.form-container {
+    max-width: 700px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form table {
+    width: 100%;
+}
+
+form th {
+    text-align: left;
+    padding: 10px;
+    vertical-align: top;
+    width: 30%;
+}
+
+form td {
+    padding: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    margin: 20px auto 0;
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input, textarea {
+    font-family: Arial, sans-serif; /* ou qualquer fonte usada nos inputs */
+    font-size: 16px;
+    padding: 5px;
+    /* você pode copiar outros estilos dos inputs aqui */
+  }
+
+  .grid-container-equipe {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas iguais */
+    grid-template-rows: repeat(1, 1fr);     /* 1 linha iguail */
+    width: 100%;
+    height: 20vh; /* ocupa a tela toda */
+    text-align: center;
+}
+
+.grid-container-categorias {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    grid-template-rows: repeat(1, 1fr);     /* 1 linha iguail */
+    width: 100%;
+    height: 20vh; /* ocupa a tela toda */
+    text-align: center;
+}
+
+.grid-container-brinquedos {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+    text-align: center;
+}
