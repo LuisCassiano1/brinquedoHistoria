@@ -20,10 +20,10 @@
     <div class="main-content p-3">
         <h1 class="titulo-destaque" th:text="${brinquedo.id != null ? 'Editar Brinquedo' : 'Novo Brinquedo'}"></h1>
 
-        <form th:action="@{${brinquedo.id != null ? '/brinquedos/' + brinquedo.id : '/brinquedos'}}"
-              th:object="${brinquedo}"
-              method="post"
-              enctype="multipart/form-data">
+		<form th:action="@{/criar}"
+		      th:object="${brinquedo}"
+		      method="post"
+		      enctype="multipart/form-data">
 
             <!-- Código -->
             <div class="mb-3">
@@ -79,5 +79,8 @@
             <a th:href="@{/adm}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
+	<footer>
+	        <p>&copy; 2025 Brinquedo História - Todos os direitos reservados.</p>
+	    </footer>
 </body>
 </html>

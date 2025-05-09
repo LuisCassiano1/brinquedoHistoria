@@ -10,35 +10,46 @@ import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService;
 
 @RestController
 @RequestMapping("/api/brinquedos")
-@CrossOrigin(origins = "*") // Permite chamadas de qualquer origem (útil para testes front-end locais)
+@CrossOrigin(origins = "*")
 public class BrinquedoController {
 
     @Autowired
-    private BrinquedoService service;
-
-    @PostMapping
-    public BrinquedoEntity criar(@RequestBody BrinquedoEntity brinquedo) {
-        return service.salvar(brinquedo);
-    }
-
-    @PutMapping("/{id}")
-    public BrinquedoEntity editar(@PathVariable Long id, @RequestBody BrinquedoEntity brinquedo) {
-        brinquedo.setId(id);
-        return service.salvar(brinquedo);
-    }
+    private BrinquedoService brinquedoService;
 
     @GetMapping
-    public List<BrinquedoEntity> listar() {
-        return service.listarTodos();
+    public List<BrinquedoEntity> listarTodos() {
+        return brinquedoService.listAll();
     }
 
     @GetMapping("/{id}")
-    public BrinquedoEntity buscarPorId(@PathVariable Long id) {
-        return service.buscarPorId(id);
+    public BrinquedoEntity getById(@PathVariable("id") Long id) {
+        return brinquedoService.getById(id);
+    }
+
+    @GetMapping("/nome/{nome}")
+    public List<BrinquedoEntity> getByNome(@PathVariable("nome") String nome) {
+        return brinquedoService.getByNome(nome);
+    }
+
+    @PostMapping
+    public BrinquedoEntity insert(@RequestBody BrinquedoEntity brinquedo) {
+        return brinquedoService.save(brinquedo);
+    }
+
+    @PutMapping("/{id}")
+    public BrinquedoEntity update(@RequestBody BrinquedoEntity brinquedo, @PathVariable Long id) {
+        BrinquedoEntity brinquedoExistente = brinquedoService.getById(id);
+        brinquedoExistente.setNome(brinquedo.getNome());
+        brinquedoExistente.setCategoria(brinquedo.getCategoria());
+        brinquedoExistente.setMarca(brinquedo.getMarca());
+        brinquedoExistente.setValor(brinquedo.getValor());
+        brinquedoExistente.setDescricao(brinquedo.getDescricao());
+        return brinquedoService.save(brinquedoExistente);
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id) {
-        service.deletar(id);
+    public String delete(@PathVariable("id") Long id) {
+        brinquedoService.delete(id);
+        return "Brinquedo excluído com sucesso";
     }
 }

@@ -13,28 +13,27 @@ public class BrinquedoService {
     @Autowired
     private BrinquedoRepository brinquedoRepository;
 
-    // Criar ou editar
-    public BrinquedoEntity salvar(BrinquedoEntity brinquedo) {
+    public BrinquedoEntity save(BrinquedoEntity brinquedo) {
         return brinquedoRepository.save(brinquedo);
     }
 
-    // Listar todos os brinquedos
-    public List<BrinquedoEntity> listarTodos() {
+    public List<BrinquedoEntity> listAll() {
         return brinquedoRepository.findAll();
     }
 
-    // Buscar por ID
-    public BrinquedoEntity buscarPorId(Long id) {
+    public BrinquedoEntity getById(Long id) {
         return brinquedoRepository.findById(id).orElse(null);
     }
 
-    // Deletar por ID
-    public void deletar(Long id) {
+    public void delete(Long id) {
         brinquedoRepository.deleteById(id);
     }
 
-    // Buscar por categoria
-    public List<BrinquedoEntity> buscarPorCategoria(String categoria) {
+    public List<BrinquedoEntity> getByCategoria(String categoria) {
         return brinquedoRepository.findByCategoria(categoria);
+    }
+
+    public List<BrinquedoEntity> getByNome(String nome) {
+        return brinquedoRepository.findByNomeContainingIgnoreCase(nome);
     }
 }

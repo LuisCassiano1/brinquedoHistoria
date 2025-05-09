@@ -23,7 +23,7 @@ public class NavegaController {
 
     @GetMapping("/adm")
     public String adm(Model model) {
-        List<BrinquedoEntity> brinquedos = brinquedoService.listarTodos();
+        List<BrinquedoEntity> brinquedos = brinquedoService.listAll();
         model.addAttribute("brinquedos", brinquedos);
         return "adm";
     }
@@ -42,7 +42,7 @@ public class NavegaController {
     public String exibirFormulario(Model model) {
         model.addAttribute("brinquedo", new BrinquedoEntity());
         model.addAttribute("categorias", List.of("Pelúcia", "Quebra-Cabeças", "HotWheels"));
-        return "form-brinquedo"; // nome do arquivo HTML real
+        return "formBrinquedo"; // nome do arquivo HTML real
     }
 
     @PostMapping("/criar")
@@ -51,48 +51,48 @@ public class NavegaController {
         Model model
     ) {
         try {
-            brinquedoService.salvar(brinquedo);
+            brinquedoService.save(brinquedo);
             return "redirect:/adm";
         } catch (Exception ex) {
             model.addAttribute("erro", ex.getMessage());
-            return "form-brinquedo";
+            return "formBrinquedo";
         }
     }
 
     @GetMapping("/editar/{id}")
     public String editarBrinquedo(@PathVariable Long id, Model model) {
-        BrinquedoEntity brinquedo = brinquedoService.buscarPorId(id);
+        BrinquedoEntity brinquedo = brinquedoService.getById(id);
         if (brinquedo == null) {
             return "redirect:/adm";
         }
         model.addAttribute("brinquedo", brinquedo);
         model.addAttribute("categorias", List.of("Pelúcia", "Quebra-Cabeças", "HotWheels"));
-        return "form-brinquedo";
+        return "formBrinquedo";
     }
 
     @GetMapping("/deletar/{id}")
     public String deletarBrinquedo(@PathVariable Long id) {
-        brinquedoService.deletar(id);
+        brinquedoService.delete(id);
         return "redirect:/adm";
     }
 
     @GetMapping("/pelucias")
     public String mostrarPelucias(Model model) {
-        List<BrinquedoEntity> brinquedos = brinquedoService.buscarPorCategoria("Pelúcia");
+        List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("Pelúcia");
         model.addAttribute("brinquedos", brinquedos);
         return "catalogo";
     }
 
     @GetMapping("/quebraCabecas")
     public String mostrarQuebraCabecas(Model model) {
-        List<BrinquedoEntity> brinquedos = brinquedoService.buscarPorCategoria("Quebra-Cabeças");
+        List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("Quebra-Cabeças");
         model.addAttribute("brinquedos", brinquedos);
         return "catalogo";
     }
 
     @GetMapping("/hotwheels")
     public String mostrarHotWheels(Model model) {
-        List<BrinquedoEntity> brinquedos = brinquedoService.buscarPorCategoria("HotWheels");
+        List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("HotWheels");
         model.addAttribute("brinquedos", brinquedos);
         return "catalogo";
     }
