@@ -4,35 +4,42 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Brinquedo História</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <header>
         <h1 id="nome-loja">Brinquedo História</h1>
     </header>
-    <div class="sidebar">
-        <img th:src="@{/imagens/logo.jpg}" width="302" height="125" alt="Logo da Loja de Brinquedos">
-		<h1 id="titulo-menu">Menu Principal</h1>
-		<a th:href="@{/home}" class="menu-item">Home</a>
-		<a th:href="@{/catalogo}" class="menu-item">Catálogo de Brinquedos</a>
-		<a th:href="@{/adm}" class="menu-item">Administração</a>
-		<a th:href="@{/sobre}" class="menu-item">Sobre a equipe</a>
-    </div>
-    <div class="destaque">
-        <h1 class="titulo-destaque">Sobre a Equipe</h1>
-    </div>
-	<div class="grid-container-equipe">
+	<div class="sidebar">
+			<img th:src="@{/imagens/logo.jpg}" width="302" height="125" alt="Logo da Loja de Brinquedos">
+	        <h1 id="titulo-menu">Menu Principal</h1>
+			<a th:href="@{/home}" class="menu-item">Home</a>
+			<a th:href="@{/catalogo}" class="menu-item">Catálogo de Brinquedos</a>
+			<a th:href="@{/adm}" class="menu-item">Administração</a>
+			<a th:href="@{/sobre}" class="menu-item">Sobre a equipe</a>
+	    </div>
+	<div class="main-content">
+	    <div class="destaque">
+	        <h1 class="titulo-destaque">Sobre a Equipe</h1>
+	    </div>
+	    <div class="grid-container-equipe">
 	        <div class="grid-item">
-	              <figure>
-	                <img src="/imagens/foto-ana.jpg" alt="Integrante 1">
+	            <figure>
+	                <img th:src="@{/imagens/foto-ana.jpg}" alt="Integrante 1">
 	                <figcaption>Ana Beatriz Mamprin <br> RGM: </figcaption>
-	              </figure>
-	          </div>
-			<div class="grid-item">
-	                <figure>
-	                  <img src="/imagens/icone-pelucia.png" alt="Integrante 2">
-	                  <figcaption>Luis Eduardo Cassiano <br> RGM: </figcaption>
-	                </figure>      
-	            </div>
+	            </figure>
+	        </div>
+	        <div class="grid-item">
+	            <figure>
+	                <img th:src="@{/imagens/foto-luis.jpeg}" alt="Integrante 2">
+	                <figcaption>Luis Eduardo Cassiano <br> RGM: </figcaption>
+	            </figure>      
+	        </div>
+	    </div>
+	</div>
+	<footer>
+	    <p>&copy; 2025 Brinquedo História - Todos os direitos reservados.</p>
+	</footer>
 </body>
 </html>
