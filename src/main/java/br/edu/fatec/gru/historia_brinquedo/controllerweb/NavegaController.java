@@ -58,7 +58,7 @@ public class NavegaController {
     }
 
     @GetMapping("/catalogo")
-    public String catalogo() {
+    public String categoria() {
         return "catalogo";
     }
 
@@ -104,20 +104,39 @@ public class NavegaController {
     public String mostrarPelucias(Model model) {
         List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("Pelúcia");
         model.addAttribute("brinquedos", brinquedos);
-        return "catalogo";
+        return "categoria";
     }
 
     @GetMapping("/quebraCabecas")
     public String mostrarQuebraCabecas(Model model) {
         List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("Quebra-Cabeças");
         model.addAttribute("brinquedos", brinquedos);
-        return "catalogo";
+        return "categoria";
     }
 
     @GetMapping("/hotwheels")
     public String mostrarHotWheels(Model model) {
         List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("HotWheels");
         model.addAttribute("brinquedos", brinquedos);
-        return "catalogo";
+        return "categoria";
     }
+    
+    @GetMapping("/catalogo/{categoria}")
+    public String listarPorCategoria(@PathVariable String categoria, Model model) {
+        List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria(categoria);
+        model.addAttribute("brinquedos", brinquedos);
+        model.addAttribute("categoria", categoria);
+        return "categoriaBrinquedos"; // essa é a view que você vai criar
+    }
+    
+    @GetMapping("/brinquedo/{id}")
+    public String mostrarDetalhesBrinquedo(@PathVariable Long id, Model model) {
+        BrinquedoEntity brinquedo = brinquedoService.getById(id);
+        if (brinquedo == null) {
+            return "redirect:/catalogo"; // ou uma página de erro
+        }
+        model.addAttribute("brinquedo", brinquedo);
+        return "detalhesBrinquedo"; // essa é a view que você vai criar
+    }
+
 }
