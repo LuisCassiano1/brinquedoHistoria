@@ -28,24 +28,29 @@ public class NavegaController {
     
     @GetMapping("/adm")
     public String mostrarAdm(Model model) {
-        model.addAttribute("brinquedos", brinquedoRepository.findAll() );
-        model.addAttribute("brinquedo", new BrinquedoEntity()); // <- este é o importante!
-        return "adm"; // nome do seu HTML
+    	model.addAttribute("brinquedo", new BrinquedoEntity());
+    	model.addAttribute("brinquedos", brinquedoService.listAll());
+    	model.addAttribute("categorias", Arrays.asList("Educativo", "Eletrônico", "Montar", "Ao ar livre"));
+        return "adm"; 
     }
     
-    @GetMapping("/adm")
+    @GetMapping("/adm/formulario")
     public String showForm(Model model) {
         model.addAttribute("brinquedo", new BrinquedoEntity()); // Objeto para o formulário
         model.addAttribute("categorias", Arrays.asList(
             "Educativo", "Eletrônico", "Montar", "Ao Ar Livre"
         )); // Lista de categorias
-        return "adm";
+        return "adm/formulario";
     }
 
     @PostMapping("/salvar")
     public String saveBrinquedo(@Valid @ModelAttribute("brinquedo") BrinquedoEntity brinquedo,
-                              BindingResult result) {
+                              BindingResult result,
+                              Model model) {
         if (result.hasErrors()) {
+        	model.addAttribute
+        	("brinquedos", brinquedoService.listAll());
+        	model.addAttribute("categorias", Arrays.asList("Educativo", "Eletronico", "Montar", "Ao ar livre"));			
             return "adm"; // Volta para o formulário com erros
         }
         brinquedoService.save(brinquedo);

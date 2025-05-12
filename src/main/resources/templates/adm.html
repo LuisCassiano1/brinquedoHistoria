@@ -19,54 +19,7 @@
         <a th:href="@{/adm}" class="menu-item">Administração</a>
         <a th:href="@{/sobre}" class="menu-item">Sobre a equipe</a>
     </div>
-	<form th:action="@{/salvar}" th:object="${brinquedo}" method="post" class="mb-4">
-	    <!-- Campo oculto para ID (útil na edição) -->
-	    <input type="hidden" th:field="*{id}">
-	    
-	    <div class="row mb-3">
-	        <div class="col">
-	            <input type="text" th:field="*{nome}" 
-	                   class="form-control" 
-	                   placeholder="Nome do brinquedo"
-	                   required
-	                   minlength="3">
-	        </div>
-	        <div class="col">
-	            <input type="text" th:field="*{marca}" 
-	                   class="form-control" 
-	                   placeholder="Marca do brinquedo"
-	                   required>
-	        </div>
-	        <div class="col">
-	            <input type="number" th:field="*{valor}" 
-	                   class="form-control" 
-	                   placeholder="Valor (R$)"
-	                   step="0.01"
-	                   min="0.01"
-	                   required>
-	        </div>
-	        <div class="col">
-	            <select th:field="*{categoria}" class="form-control" required>
-	                <option value="" disabled selected>Selecione a categoria</option>
-	                <option th:each="cat : ${categorias}"
-	                        th:value="${cat}"
-	                        th:text="${cat}">
-	                </option>
-	            </select>
-	        </div>
-	    </div>
-	    <div class="mb-3">
-	        <textarea th:field="*{descricao}" 
-	                 class="form-control" 
-	                 rows="3"
-	                 placeholder="Descrição detalhada..."
-	                 required></textarea>
-	    </div>
-	    <div class="d-grid gap-2">
-	        <button type="submit" class="btn btn-success btn-lg">
-	            <i class="bi bi-save"></i> Salvar Brinquedo
-	        </button>
-	    </div>
+	
 	</form>
         <table class="table table-striped table-hover">
             <thead>
@@ -84,7 +37,7 @@
                     <td th:text="${#numbers.formatDecimal(brinquedo.valor, 1, 'POINT', 2, 'ZERO')}">0.00</td>
                     <td>
                         <a th:href="@{'/editar/' + ${brinquedo.id}}" class="btn btn-primary">Editar</a>
-                        <a th:href="@{'/deletar/' + ${brinquedo.id}}" 
+                        <a th:href="@{'/deletar/' + ${brinquedo.id}}" class="text-danger" onclick="return confirm('Deseja realmente excluir?');">Excluir</a>" 
                            class="btn btn-danger" 
                            onclick="return confirm('Deseja realmente excluir?');">Excluir</a>
                     </td>
@@ -94,6 +47,5 @@
         <a th:href="@{/adm/formBrinquedo}">
             <button class="btn btn-success">Novo Brinquedo</button>
         </a>
-    </div>
-</body>
+	</body>
 </html>

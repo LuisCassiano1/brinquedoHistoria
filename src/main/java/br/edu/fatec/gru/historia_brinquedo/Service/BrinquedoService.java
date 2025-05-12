@@ -28,12 +28,11 @@ public class BrinquedoService {
     public void delete(Long id) {
         brinquedoRepository.deleteById(id);
     }
+    
 
-    public List<BrinquedoEntity> getByCategoria(String categoria) {
-        return brinquedoRepository.findByCategoria(categoria);
+    public List<String> listarCategorias() {
+        return List.of("Pelúcia", "Quebra-Cabeças", "HotWheels");
     }
 
-    public List<BrinquedoEntity> getByNome(String nome) {
-        return brinquedoRepository.findByNomeContainingIgnoreCase(nome);
-    }
+    
 }
