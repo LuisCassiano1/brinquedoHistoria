@@ -21,12 +21,12 @@ public class BrinquedoService {
         return brinquedoRepository.findAll();
     }
 
-    public BrinquedoEntity getById(Long id) {
-        return brinquedoRepository.findById(id).orElse(null);
+    public BrinquedoEntity getById(Long idBrinquedo) {
+        return brinquedoRepository.findById(idBrinquedo).orElse(null);
     }
 
-    public void delete(Long id) {
-        brinquedoRepository.deleteById(id);
+    public void delete(Long idBrinquedo) {
+        brinquedoRepository.deleteById(idBrinquedo);
     }
     
 

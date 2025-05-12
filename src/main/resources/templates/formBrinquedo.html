@@ -18,7 +18,7 @@
     </div>
     
     <div class="main-content p-3">
-        <h1 class="titulo-destaque" th:text="${brinquedo.id != null ? 'Editar Brinquedo' : 'Novo Brinquedo'}"></h1>
+        <h1 class="titulo-destaque" th:text="${brinquedo.idBrinquedo != null ? 'Editar Brinquedo' : 'Novo Brinquedo'}"></h1>
 
 		<form th:action="@{/criar}"
 		      th:object="${brinquedo}"
@@ -28,8 +28,8 @@
             <!-- Código -->
             <div class="mb-3">
                 <label>CÓDIGO:</label>
-                <input type="text" th:field="*{codigo}" class="form-control"
-                       th:attr="readonly=${brinquedo.id != null}" required>
+                <input type="text" th:field="*{codigoBrinquedo}" class="form-control"
+                       th:attr="readonly=${brinquedo.idBrinquedo != null}" required>
             </div>
 
             <!-- Nome -->

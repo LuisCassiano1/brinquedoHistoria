@@ -288,3 +288,36 @@ footer {
     margin-top: 0;
     font-size: 20px;
 }
+
+/* Estilo específico para tabelas na página de administração */
+table.table {
+    width: 100%;
+    margin: 30px auto;
+    background-color: #fff;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table.table th,
+table.table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table.table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+table.table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Espaçamento entre o botão "Novo Brinquedo" e a tabela */
+.btn-success {
+    margin: 20px auto;
+    display: block;
+}

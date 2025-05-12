@@ -30,7 +30,7 @@ public class NavegaController {
     public String mostrarAdm(Model model) {
     	model.addAttribute("brinquedo", new BrinquedoEntity());
     	model.addAttribute("brinquedos", brinquedoService.listAll());
-    	model.addAttribute("categorias", Arrays.asList("Educativo", "Eletrônico", "Montar", "Ao ar livre"));
+    	model.addAttribute("categorias", Arrays.asList("Pelúcia", "Quebra-Cabeças", "HotWheels"));
         return "adm"; 
     }
     
@@ -38,7 +38,7 @@ public class NavegaController {
     public String showForm(Model model) {
         model.addAttribute("brinquedo", new BrinquedoEntity()); // Objeto para o formulário
         model.addAttribute("categorias", Arrays.asList(
-            "Educativo", "Eletrônico", "Montar", "Ao Ar Livre"
+        		"Pelúcia", "Quebra-Cabeças", "HotWheels"
         )); // Lista de categorias
         return "adm/formulario";
     }
@@ -50,7 +50,7 @@ public class NavegaController {
         if (result.hasErrors()) {
         	model.addAttribute
         	("brinquedos", brinquedoService.listAll());
-        	model.addAttribute("categorias", Arrays.asList("Educativo", "Eletronico", "Montar", "Ao ar livre"));			
+        	model.addAttribute("categorias", Arrays.asList("Pelúcia", "Quebra-Cabeças", "HotWheels"));			
             return "adm"; // Volta para o formulário com erros
         }
         brinquedoService.save(brinquedo);
@@ -89,8 +89,8 @@ public class NavegaController {
     }
 
     @GetMapping("/editar/{id}")
-    public String editarBrinquedo(@PathVariable Long id, Model model) {
-        BrinquedoEntity brinquedo = brinquedoService.getById(id);
+    public String editarBrinquedo(@PathVariable Long idBrinquedo, Model model) {
+        BrinquedoEntity brinquedo = brinquedoService.getById(idBrinquedo);
         if (brinquedo == null) {
             return "redirect:/adm";
         }
@@ -100,12 +100,12 @@ public class NavegaController {
     }
 
     @GetMapping("/deletar/{id}")
-    public String deletarBrinquedo(@PathVariable Long id) {
-        brinquedoService.delete(id);
+    public String deletarBrinquedo(@PathVariable Long idBrinquedo) {
+        brinquedoService.delete(idBrinquedo);
         return "redirect:/adm";
     }
-
-    @GetMapping("/pelucias")
+ // COLOCAR QUANDO A LISTA FUNCIONAR
+    /*@GetMapping("/pelucias")
     public String mostrarPelucias(Model model) {
         List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("Pelúcia");
         model.addAttribute("brinquedos", brinquedos);
@@ -132,11 +132,11 @@ public class NavegaController {
         model.addAttribute("brinquedos", brinquedos);
         model.addAttribute("categoria", categoria);
         return "categoriaBrinquedos"; // essa é a view que você vai criar
-    }
+    }*/
     
     @GetMapping("/brinquedo/{id}")
-    public String mostrarDetalhesBrinquedo(@PathVariable Long id, Model model) {
-        BrinquedoEntity brinquedo = brinquedoService.getById(id);
+    public String mostrarDetalhesBrinquedo(@PathVariable Long idBrinquedo, Model model) {
+        BrinquedoEntity brinquedo = brinquedoService.getById(idBrinquedo);
         if (brinquedo == null) {
             return "redirect:/catalogo"; // ou uma página de erro
         }

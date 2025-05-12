@@ -25,11 +25,11 @@ public class BrinquedoController {
     public BrinquedoEntity getById(@PathVariable("id") Long id) {
         return brinquedoService.getById(id);
     }
-
-    @GetMapping("/nome/{nome}")
-    public List<BrinquedoEntity> getByNome(@PathVariable("nome") String nome) {
-        return brinquedoService.getByNome(nome);
-    }
+    // COLOCAR QUANDO A LISTA FUNCIONAR
+    /*@GetMapping("/nome/{nome}")
+    public List<BrinquedoEntity> getByNome(@PathVariable("nome") String nomeBrinquedo) {
+        return brinquedoService.getByNome(nomeBrinquedo);
+    }*/
 
     @PostMapping
     public BrinquedoEntity insert(@RequestBody BrinquedoEntity brinquedo) {
@@ -39,11 +39,11 @@ public class BrinquedoController {
     @PutMapping("/{id}")
     public BrinquedoEntity update(@RequestBody BrinquedoEntity brinquedo, @PathVariable Long id) {
         BrinquedoEntity brinquedoExistente = brinquedoService.getById(id);
-        brinquedoExistente.setNome(brinquedo.getNome());
-        brinquedoExistente.setCategoria(brinquedo.getCategoria());
-        brinquedoExistente.setMarca(brinquedo.getMarca());
-        brinquedoExistente.setValor(brinquedo.getValor());
-        brinquedoExistente.setDescricao(brinquedo.getDescricao());
+        brinquedoExistente.setNomeBrinquedo(brinquedo.getNomeBrinquedo());
+        brinquedoExistente.setCategoriaBrinquedo(brinquedo.getCategoriaBrinquedo());
+        brinquedoExistente.setMarcaBrinquedo(brinquedo.getMarcaBrinquedo());
+        brinquedoExistente.setValorBrinquedo(brinquedo.getValorBrinquedo());
+        brinquedoExistente.setDescricaoBrinquedo(brinquedo.getDescricaoBrinquedo());
         return brinquedoService.save(brinquedoExistente);
     }
 

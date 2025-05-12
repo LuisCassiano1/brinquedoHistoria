@@ -8,64 +8,82 @@ public class BrinquedoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idBrinquedo;
 
-    private String nome;
-    private String categoria;
-    private String marca;
-    private Double valor;
-    private String descricao;
+    private String nomeBrinquedo;
+    private String categoriaBrinquedo;
+    private String marcaBrinquedo;
+    private Double valorBrinquedo;
+    private String descricaoBrinquedo;
+   // private String imagemBrinquedo;
 
     // Construtores
     public BrinquedoEntity() {}
 
-    public BrinquedoEntity(String nome, String categoria, String marca, Double valor, String descricao) {
-        this.nome = nome;
-        this.categoria = categoria;
-        this.marca = marca;
-        this.valor = valor;
-        this.descricao = descricao;
+    public BrinquedoEntity(String nomeBrinquedo, String categoriaBrinquedo, String marcaBrinquedo, Double valorBrinquedo, String descricaoBrinquedo/*, String imagemBrinquedo*/) {
+        this.nomeBrinquedo = nomeBrinquedo;
+        this.categoriaBrinquedo = categoriaBrinquedo;
+        this.marcaBrinquedo = marcaBrinquedo;
+        this.valorBrinquedo = valorBrinquedo;
+        this.descricaoBrinquedo = descricaoBrinquedo;
+        //this.imagemBrinquedo = imagemBrinquedo;
     }
 
     // Getters e Setters
     
-    public String getNome() {
-        return nome;
+    public Long getIdBrinquedo() {
+        return idBrinquedo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdBrinquedo(Long idBrinquedo) {
+        this.idBrinquedo = idBrinquedo;
+    }
+    
+    public String getNomeBrinquedo() {
+        return nomeBrinquedo;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public void setNomeBrinquedo(String nomeBrinquedo) {
+        this.nomeBrinquedo = nomeBrinquedo;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public String getCategoriaBrinquedo() {
+        return categoriaBrinquedo;
     }
 
-    public String getMarca() {
-        return marca;
+    public void setCategoriaBrinquedo(String categoriaBrinquedo) {
+        this.categoriaBrinquedo = categoriaBrinquedo;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public String getMarcaBrinquedo() {
+        return marcaBrinquedo;
     }
 
-    public Double getValor() {
-        return valor;
+    public void setMarcaBrinquedo(String marcaBrinquedo) {
+        this.marcaBrinquedo = marcaBrinquedo;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public Double getValorBrinquedo() {
+        return valorBrinquedo;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public void setValorBrinquedo(Double valorBrinquedo) {
+        this.valorBrinquedo = valorBrinquedo;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public String getDescricaoBrinquedo() {
+        return descricaoBrinquedo;
     }
+
+    public void setDescricaoBrinquedo(String descricaoBrinquedo) {
+        this.descricaoBrinquedo = descricaoBrinquedo;
+    }
+    /*
+    public String getImagemBrinquedo() {
+        return imagemBrinquedo;
+    }
+
+    public void setImagemBrinquedo(String imagemBrinquedo) {
+        this.imagemBrinquedo = imagemBrinquedo;
+    }*/
 }

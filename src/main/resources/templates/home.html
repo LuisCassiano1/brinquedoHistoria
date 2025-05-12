@@ -27,9 +27,9 @@
         </div>
         <div class="grid-container">
             <div class="grid-item" th:each="brinquedo : ${brinquedos}">
-                <a th:href="@{'/brinquedo/' + ${brinquedo.id}}">
+                <a th:href="@{'/brinquedo/' + ${brinquedo.idBrinquedo}}">
                     <figure>
-                        <img th:src="@{'/imagens/' + ${brinquedo.imagem}}" alt="Imagem do brinquedo">
+                        <img th:src="@{'/imagens/' + ${brinquedo.imagemBrinquedo}}" alt="Imagem do brinquedo">
                         <figcaption>
                             <strong th:text="${brinquedo.nomeBrinquedo}"></strong><br>
                             <span th:text="${brinquedo.descricaoBrinquedo}"></span><br>

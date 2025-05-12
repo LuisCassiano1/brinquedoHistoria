@@ -21,37 +21,41 @@
         <a th:href="@{/sobre}" class="menu-item">Sobre a equipe</a>
     </div>
 
-	<div class="main-content container mt-4">
-	    <!-- Caminho de navegação -->
-	    <p class="text-muted">
-	        Catálogo de Brinquedos :: <span th:text="${brinquedo.categoria}">Categoria</span> :: <span th:text="${brinquedo.nomeBrinquedo}">Nome</span>
-	    </p>
+    <div class="main-content container mt-4">
+        <!-- Caminho de navegação -->
+        <p class="text-muted">
+            Catálogo de Brinquedos :: 
+            <span th:text="${brinquedo.categoriaBrinquedo}">Categoria</span> :: 
+            <span th:text="${brinquedo.nomeBrinquedo}">Nome</span>
+        </p>
 
-	    <div class="detalhes-container">
-	        <!-- Imagem -->
-	        <div class="imagem-detalhe">
-	            <img th:src="@{'/imagens/' + ${brinquedo.imagem}}" alt="Imagem do brinquedo" class="img-fluid">
-	        </div>
+        <div class="detalhes-container">
+            <!-- Imagem -->
+			<!--
+            <div class="imagem-detalhe">
+                <img th:src="@{'/imagens/' + ${brinquedo.imagemBrinquedo}}" alt="Imagem do brinquedo" class="img-fluid">
+            </div>
+			-->
 
-	        <!-- Informações principais -->
-	        <div class="info-detalhe">
-	            <p><strong>Código do Brinquedo:</strong> <span th:text="${brinquedo.id}">123</span></p>
-	            <h2 th:text="${brinquedo.nomeBrinquedo}">Nome do Brinquedo</h2>
-	            <div class="valor-brinquedo">
-	                R$ <span th:text="${#numbers.formatDecimal(brinquedo.valorBrinquedo, 1, 'POINT', 2, 'ZERO')}">0,00</span>
-	            </div>
-	            <p><strong>Descrição:</strong> <span th:text="${brinquedo.descricaoBrinquedo}"></span></p>
-	        </div>
-	    </div>
+            <!-- Informações principais -->
+            <div class="info-detalhe">
+                <p><strong>Código do Brinquedo:</strong> <span th:text="${brinquedo.idBrinquedo}">123</span></p>
+                <h2 th:text="${brinquedo.nomeBrinquedo}">Nome do Brinquedo</h2>
+                <div class="valor-brinquedo">
+                    R$ <span th:text="${#numbers.formatDecimal(brinquedo.valorBrinquedo, 1, 'POINT', 2, 'ZERO')}">0,00</span>
+                </div>
+                <p><strong>Descrição:</strong> <span th:text="${brinquedo.descricaoBrinquedo}">Descrição</span></p>
+            </div>
+        </div>
 
-	    <!-- Detalhes adicionais -->
-	    <div class="caixa-detalhes">
-	        <h5>Detalhes sobre o brinquedo:</h5>
-	        <p th:text="${brinquedo.descricaoBrinquedo}">Texto detalhado aqui...</p>
-	    </div>
-	</div>
+        <!-- Detalhes adicionais -->
+        <div class="caixa-detalhes">
+            <h5>Detalhes sobre o brinquedo:</h5>
+            <p th:text="${brinquedo.descricaoBrinquedo}">Texto detalhado aqui...</p>
+        </div>
+    </div>
 
-    <footer>
+    <footer class="mt-5">
         <p>&copy; 2025 Brinquedo História - Todos os direitos reservados.</p>
     </footer>
 </body>

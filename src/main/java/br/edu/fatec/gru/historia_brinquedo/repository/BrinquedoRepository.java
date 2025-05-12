@@ -10,7 +10,7 @@ import br.edu.fatec.gru.historia_brinquedo.model.BrinquedoEntity;
 @Repository
 public interface BrinquedoRepository extends JpaRepository<BrinquedoEntity, Long> {
 
-    List<BrinquedoEntity> findByCategoria(String categoria);
+    List<BrinquedoEntity> findByCategoriaBrinquedo(String categoriaBrinquedo);
 
-    List<BrinquedoEntity> findByNomeContainingIgnoreCase(String nome);
+    List<BrinquedoEntity> findByNomeBrinquedoContainingIgnoreCase(String nomeBrinquedo);
 }

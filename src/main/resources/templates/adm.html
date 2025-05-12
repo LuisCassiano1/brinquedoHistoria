@@ -19,8 +19,10 @@
         <a th:href="@{/adm}" class="menu-item">Administração</a>
         <a th:href="@{/sobre}" class="menu-item">Sobre a equipe</a>
     </div>
-	
-	</form>
+	<div class="main-content p-3">
+		<div class="destaque">
+			        <h1 class="titulo-destaque">Catálogo de Brinquedos: administração</h1>
+			    </div>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -32,14 +34,14 @@
             </thead>
             <tbody>
                 <tr th:each="brinquedo : ${brinquedos}">
-                    <td th:text="${brinquedo.nome}">Nome</td>
-                    <td th:text="${brinquedo.categoria}">Categoria</td>
-                    <td th:text="${#numbers.formatDecimal(brinquedo.valor, 1, 'POINT', 2, 'ZERO')}">0.00</td>
+                    <td th:text="${brinquedo.nomeBrinquedo}">Nome</td>
+                    <td th:text="${brinquedo.categoriaBrinquedo}">Categoria</td>
+                    <td th:text="${#numbers.formatDecimal(brinquedo.valorBrinquedo, 1, 'POINT', 2, 'ZERO')}">0.00</td>
                     <td>
-                        <a th:href="@{'/editar/' + ${brinquedo.id}}" class="btn btn-primary">Editar</a>
-                        <a th:href="@{'/deletar/' + ${brinquedo.id}}" class="text-danger" onclick="return confirm('Deseja realmente excluir?');">Excluir</a>" 
-                           class="btn btn-danger" 
-                           onclick="return confirm('Deseja realmente excluir?');">Excluir</a>
+                        <a th:href="@{'/editar/' + ${brinquedo.idBrinquedo}}" class="btn btn-primary">Editar</a>
+						<a th:href="@{'/deletar/' + ${brinquedo.idBrinquedo}}" 
+						   class="btn btn-danger" 
+						   onclick="return confirm('Deseja realmente excluir?');">Excluir</a>
                     </td>
                 </tr>
             </tbody>
@@ -47,5 +49,6 @@
         <a th:href="@{/adm/formBrinquedo}">
             <button class="btn btn-success">Novo Brinquedo</button>
         </a>
+		</div>
 	</body>
 </html>
