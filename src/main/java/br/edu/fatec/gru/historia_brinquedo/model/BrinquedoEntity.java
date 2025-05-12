@@ -10,6 +10,7 @@ public class BrinquedoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBrinquedo;
 
+    private String codigoBrinquedo;
     private String nomeBrinquedo;
     private String categoriaBrinquedo;
     private String marcaBrinquedo;
@@ -20,8 +21,9 @@ public class BrinquedoEntity {
     // Construtores
     public BrinquedoEntity() {}
 
-    public BrinquedoEntity(String nomeBrinquedo, String categoriaBrinquedo, String marcaBrinquedo, Double valorBrinquedo, String descricaoBrinquedo/*, String imagemBrinquedo*/) {
-        this.nomeBrinquedo = nomeBrinquedo;
+    public BrinquedoEntity(String codigoBrinquedo, String nomeBrinquedo, String categoriaBrinquedo, String marcaBrinquedo, Double valorBrinquedo, String descricaoBrinquedo/*, String imagemBrinquedo*/) {
+        this.codigoBrinquedo = codigoBrinquedo;
+    	this.nomeBrinquedo = nomeBrinquedo;
         this.categoriaBrinquedo = categoriaBrinquedo;
         this.marcaBrinquedo = marcaBrinquedo;
         this.valorBrinquedo = valorBrinquedo;
@@ -37,6 +39,14 @@ public class BrinquedoEntity {
 
     public void setIdBrinquedo(Long idBrinquedo) {
         this.idBrinquedo = idBrinquedo;
+    }
+    
+    public String getCodigoBrinquedo() {
+        return codigoBrinquedo;
+    }
+
+    public void setCodigoBrinquedo(String codigoBrinquedo) {
+        this.codigoBrinquedo = codigoBrinquedo;
     }
     
     public String getNomeBrinquedo() {

@@ -71,7 +71,7 @@ public class NavegaController {
     public String exibirFormulario(Model model) {
         model.addAttribute("brinquedo", new BrinquedoEntity());
         model.addAttribute("categorias", List.of("Pelúcia", "Quebra-Cabeças", "HotWheels"));
-        return "adm/formBrinquedo"; // nome do arquivo HTML real
+        return "formBrinquedo"; // nome do arquivo HTML real
     }
 
     @PostMapping("/criar")
