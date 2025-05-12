@@ -2,7 +2,8 @@ CREATE DATABASE brinquedoHistoria;
 USE brinquedoHistoria;
 
 CREATE TABLE tb_brinquedo (
-    id_Brinquedo BIGINT NOT NULL AUTO_INCREMENT,
+    id_brinquedo BIGINT NOT NULL AUTO_INCREMENT,
+    codigo_brinquedo BIGINT NOT NULL,
     nome_brinquedo VARCHAR(100) NOT NULL,
     categoria_brinquedo VARCHAR(100) NOT NULL,
     marca_brinquedo VARCHAR(100) NOT NULL,
