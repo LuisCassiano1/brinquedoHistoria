@@ -38,7 +38,8 @@
                     <td th:text="${brinquedo.categoriaBrinquedo}">Categoria</td>
                     <td th:text="${#numbers.formatDecimal(brinquedo.valorBrinquedo, 1, 'POINT', 2, 'ZERO')}">0.00</td>
                     <td>
-                        <a th:href="@{'/editar/' + ${brinquedo.idBrinquedo}}" class="btn btn-primary">Editar</a>
+						<a th:href="@{|/editar/${brinquedo.idBrinquedo}|}" class="btn btn-primary">Editar</a>
+						<a th:href="@{|/deletar/${brinquedo.idBrinquedo}|}" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir?');">Excluir</a>
 						<a th:href="@{'/deletar/' + ${brinquedo.idBrinquedo}}" 
 						   class="btn btn-danger" 
 						   onclick="return confirm('Deseja realmente excluir?');">Excluir</a>
