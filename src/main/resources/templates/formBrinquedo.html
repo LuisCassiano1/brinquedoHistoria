@@ -21,10 +21,13 @@
 		<h1 class="titulo-destaque" th:if="${brinquedo.idBrinquedo != null}">Editar Brinquedo</h1>
 		<h1 class="titulo-destaque" th:unless="${brinquedo.idBrinquedo != null}">Novo Brinquedo</h1>
 
-		<form th:action="@{/criar}"
+		<form th:action="@{/salvar}"
 		      th:object="${brinquedo}"
 		      method="post"
 		      enctype="multipart/form-data">
+			  
+			  <!-- ID -->
+			  <input type="hidden" th:field="*{idBrinquedo}">
 
             <!-- Código -->
             <div class="mb-3">
@@ -62,6 +65,12 @@
                 <label for="valor">VALOR:</label>
                 <input type="number" th:field="*{valorBrinquedo}" step="0.01" class="form-control" required>
             </div>
+			
+			<!-- Imagem -->
+			<div class="mb-3">
+			    <label for="imagemBrinquedo">IMAGEM:</label>
+			    <input type="file" class="form-control" name="imagem" id="imagemBrinquedo" accept="image/*" required>
+			</div>
 
             <!-- Descrição -->
             <div class="mb-3">

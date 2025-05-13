@@ -16,19 +16,19 @@ public class BrinquedoEntity {
     private String marcaBrinquedo;
     private Double valorBrinquedo;
     private String descricaoBrinquedo;
-   // private String imagemBrinquedo;
+    private String imagemBrinquedo;
 
     // Construtores
     public BrinquedoEntity() {}
 
-    public BrinquedoEntity(String codigoBrinquedo, String nomeBrinquedo, String categoriaBrinquedo, String marcaBrinquedo, Double valorBrinquedo, String descricaoBrinquedo/*, String imagemBrinquedo*/) {
+    public BrinquedoEntity(String codigoBrinquedo, String nomeBrinquedo, String categoriaBrinquedo, String marcaBrinquedo, Double valorBrinquedo, String descricaoBrinquedo, String imagemBrinquedo) {
         this.codigoBrinquedo = codigoBrinquedo;
     	this.nomeBrinquedo = nomeBrinquedo;
         this.categoriaBrinquedo = categoriaBrinquedo;
         this.marcaBrinquedo = marcaBrinquedo;
         this.valorBrinquedo = valorBrinquedo;
         this.descricaoBrinquedo = descricaoBrinquedo;
-        //this.imagemBrinquedo = imagemBrinquedo;
+        this.imagemBrinquedo = imagemBrinquedo;
     }
 
     // Getters e Setters
@@ -88,12 +88,12 @@ public class BrinquedoEntity {
     public void setDescricaoBrinquedo(String descricaoBrinquedo) {
         this.descricaoBrinquedo = descricaoBrinquedo;
     }
-    /*
+    
     public String getImagemBrinquedo() {
         return imagemBrinquedo;
     }
 
     public void setImagemBrinquedo(String imagemBrinquedo) {
         this.imagemBrinquedo = imagemBrinquedo;
-    }*/
+    }
 }

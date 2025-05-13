@@ -1,13 +1,19 @@
 package br.edu.fatec.gru.historia_brinquedo.controllerweb;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService;
@@ -47,20 +53,40 @@ public class NavegaController {
     }
 
     @PostMapping("/salvar")
-    public String saveBrinquedo(@Valid @ModelAttribute("brinquedo") BrinquedoEntity brinquedo,
-                              BindingResult result,
-                              RedirectAttributes redirectAttributes) {  // Mudamos para RedirectAttributes
-        
+    public String saveBrinquedo(
+        @Valid @ModelAttribute("brinquedo") BrinquedoEntity brinquedo,
+        BindingResult result,
+        @RequestParam("imagem") MultipartFile imagem, // <-- aqui recebemos o arquivo
+        RedirectAttributes redirectAttributes
+    ) {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.brinquedo", result);
             redirectAttributes.addFlashAttribute("brinquedo", brinquedo);
             return "redirect:/adm";
         }
-        
-        brinquedoService.save(brinquedo);
-        redirectAttributes.addFlashAttribute("successMessage", "Brinquedo salvo com sucesso!");
+
+        try {
+            if (!imagem.isEmpty()) {
+                // Gera nome seguro para o arquivo
+                String nomeArquivo = UUID.randomUUID() + "_" + imagem.getOriginalFilename();
+                
+                // Caminho onde a imagem será salva
+                Path caminho = Paths.get("src/main/resources/static/imagens/" + nomeArquivo);
+                Files.createDirectories(caminho.getParent());
+                Files.write(caminho, imagem.getBytes());
+
+                brinquedo.setImagemBrinquedo(nomeArquivo);
+            }
+
+            brinquedoService.save(brinquedo);
+            redirectAttributes.addFlashAttribute("successMessage", "Brinquedo salvo com sucesso!");
+        } catch (IOException e) {
+            redirectAttributes.addFlashAttribute("erro", "Erro ao salvar a imagem: " + e.getMessage());
+        }
+
         return "redirect:/adm";
     }
+
 
     @GetMapping("/sobre")
     public String sobre() {
@@ -79,7 +105,8 @@ public class NavegaController {
         return "formBrinquedo"; // nome do arquivo HTML real
     }
 
-    @PostMapping("/criar")
+    //MÉTODO MAIS SIMPLES, SEM TRATAMENTO DE ERROS
+    /*@PostMapping("/criar")
     public String salvarBrinquedo(
         @ModelAttribute BrinquedoEntity brinquedo,
         Model model
@@ -91,9 +118,9 @@ public class NavegaController {
             model.addAttribute("erro", ex.getMessage());
             return "formBrinquedo";
         }
-    }
+    }*/
 
-    @GetMapping("/editar/{id}")
+    @GetMapping("/editar/{idBrinquedo}")
     public String editarBrinquedo(@PathVariable Long idBrinquedo, Model model) {
         BrinquedoEntity brinquedo = brinquedoService.getById(idBrinquedo);
         if (brinquedo == null) {
@@ -144,7 +171,7 @@ public class NavegaController {
         return "categoriaBrinquedos"; // essa é a view que você vai criar
     }*/
     
-    @GetMapping("/brinquedo/{id}")
+    @GetMapping("/brinquedo/{idBrinquedo}")
     public String mostrarDetalhesBrinquedo(@PathVariable Long idBrinquedo, Model model) {
         BrinquedoEntity brinquedo = brinquedoService.getById(idBrinquedo);
         if (brinquedo == null) {
