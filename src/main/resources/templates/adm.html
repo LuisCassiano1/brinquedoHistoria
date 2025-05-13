@@ -8,6 +8,16 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+	<div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show">
+	    <span th:text="${successMessage}"></span>
+	    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+	</div>
+
+	<div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show">
+	    <span th:text="${errorMessage}"></span>
+	    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+	</div>
+	
     <header>
         <h1 id="nome-loja">Brinquedo História</h1>
     </header>
@@ -36,7 +46,7 @@
                 <tr th:each="brinquedo : ${brinquedos}">
                     <td th:text="${brinquedo.nomeBrinquedo}">Nome</td>
                     <td th:text="${brinquedo.categoriaBrinquedo}">Categoria</td>
-                    <td th:text="${#numbers.formatDecimal(brinquedo.valorBrinquedo, 1, 'POINT', 2, 'ZERO')}">0.00</td>
+                   <td th:text="${#numbers.formatDecimal(brinquedo.valorBrinquedo, 1, 2)}">0.00</td>
                     <td>
 						<a th:href="@{|/editar/${brinquedo.idBrinquedo}|}" class="btn btn-primary">Editar</a>
 						<a th:href="@{|/deletar/${brinquedo.idBrinquedo}|}" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir?');">Excluir</a>

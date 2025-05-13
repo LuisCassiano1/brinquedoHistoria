@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService;
 import br.edu.fatec.gru.historia_brinquedo.model.BrinquedoEntity;
@@ -27,11 +28,13 @@ public class NavegaController {
     }
     
     @GetMapping("/adm")
-    public String mostrarAdm(Model model) {
-    	model.addAttribute("brinquedo", new BrinquedoEntity());
-    	model.addAttribute("brinquedos", brinquedoService.listAll());
-    	model.addAttribute("categorias", Arrays.asList("Pelúcia", "Quebra-Cabeças", "HotWheels"));
-        return "adm"; 
+    public String showAdmPage(Model model) {
+        if (!model.containsAttribute("brinquedo")) {
+            model.addAttribute("brinquedo", new BrinquedoEntity());
+        }
+        model.addAttribute("brinquedos", brinquedoService.listAll());
+        model.addAttribute("categorias", Arrays.asList("Pelúcia", "Quebra-Cabeças", "HotWheels"));
+        return "adm";
     }
     
     @GetMapping("/adm/formulario")
@@ -46,14 +49,16 @@ public class NavegaController {
     @PostMapping("/salvar")
     public String saveBrinquedo(@Valid @ModelAttribute("brinquedo") BrinquedoEntity brinquedo,
                               BindingResult result,
-                              Model model) {
+                              RedirectAttributes redirectAttributes) {  // Mudamos para RedirectAttributes
+        
         if (result.hasErrors()) {
-        	model.addAttribute
-        	("brinquedos", brinquedoService.listAll());
-        	model.addAttribute("categorias", Arrays.asList("Pelúcia", "Quebra-Cabeças", "HotWheels"));			
-            return "adm"; // Volta para o formulário com erros
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.brinquedo", result);
+            redirectAttributes.addFlashAttribute("brinquedo", brinquedo);
+            return "redirect:/adm";
         }
+        
         brinquedoService.save(brinquedo);
+        redirectAttributes.addFlashAttribute("successMessage", "Brinquedo salvo com sucesso!");
         return "redirect:/adm";
     }
 
@@ -99,9 +104,14 @@ public class NavegaController {
         return "formBrinquedo";
     }
 
-    @GetMapping("/deletar/{id}")
-    public String deletarBrinquedo(@PathVariable Long idBrinquedo) {
-        brinquedoService.delete(idBrinquedo);
+    @GetMapping("/deletar/{idBrinquedo}")
+    public String deletarBrinquedo(@PathVariable Long idBrinquedo, RedirectAttributes redirectAttributes) {
+        try {
+            brinquedoService.delete(idBrinquedo);
+            redirectAttributes.addFlashAttribute("successMessage", "Brinquedo excluído com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao excluir brinquedo: " + e.getMessage());
+        }
         return "redirect:/adm";
     }
  // COLOCAR QUANDO A LISTA FUNCIONAR
