@@ -50,10 +50,7 @@
                     <td>
 						<a th:href="@{|/editar/${brinquedo.idBrinquedo}|}" class="btn btn-primary">Editar</a>
 						<a th:href="@{|/deletar/${brinquedo.idBrinquedo}|}" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir?');">Excluir</a>
-						<a th:href="@{'/deletar/' + ${brinquedo.idBrinquedo}}" 
-						   class="btn btn-danger" 
-						   onclick="return confirm('Deseja realmente excluir?');">Excluir</a>
-                    </td>
+					</td>
                 </tr>
             </tbody>
         </table>
