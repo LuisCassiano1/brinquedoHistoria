@@ -18,7 +18,8 @@
     </div>
     
     <div class="main-content p-3">
-        <h1 class="titulo-destaque" th:text="${brinquedo.idBrinquedo != null ? 'Editar Brinquedo' : 'Novo Brinquedo'}"></h1>
+		<h1 class="titulo-destaque" th:if="${brinquedo.idBrinquedo != null}">Editar Brinquedo</h1>
+		<h1 class="titulo-destaque" th:unless="${brinquedo.idBrinquedo != null}">Novo Brinquedo</h1>
 
 		<form th:action="@{/criar}"
 		      th:object="${brinquedo}"
