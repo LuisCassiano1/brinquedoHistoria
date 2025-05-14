@@ -321,3 +321,18 @@ table.table tbody tr:hover {
     margin: 20px auto;
     display: block;
 }
+
+.mensagem-flutuante {
+    position: fixed;
+    top: 20px; /* distância do topo */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* fica acima da sidebar e do restante */
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+

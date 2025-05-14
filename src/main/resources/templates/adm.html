@@ -8,15 +8,9 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show">
-	    <span th:text="${successMessage}"></span>
-	    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-	</div>
-
-	<div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show">
-	    <span th:text="${errorMessage}"></span>
-	    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-	</div>
+	
+	<div th:if="${successMessage}" class="alert alert-success mensagem-flutuante" role="alert" th:text="${successMessage}"></div>
+	<div th:if="${errorMessage}" class="alert alert-danger mensagem-flutuante" role="alert" th:text="${errorMessage}"></div>
 	
     <header>
         <h1 id="nome-loja">Brinquedo História</h1>
@@ -58,5 +52,20 @@
             <button class="btn btn-success">Novo Brinquedo</button>
         </a>
 		</div>
+		<script>
+		    // Espera o DOM carregar
+		    document.addEventListener("DOMContentLoaded", function () {
+		        const mensagem = document.querySelector(".mensagem-flutuante");
+		        if (mensagem) {
+		            setTimeout(() => {
+		                mensagem.style.opacity = "0";
+		                mensagem.style.transition = "opacity 1s ease";
+		                setTimeout(() => {
+		                    mensagem.remove(); // remove do DOM depois de sumir
+		                }, 1000);
+		            }, 3000); // espera 3 segundos antes de começar a desaparecer
+		        }
+		    });
+		</script>
 	</body>
 </html>
