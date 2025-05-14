@@ -17,6 +17,7 @@ public class BrinquedoEntity {
     private Double valorBrinquedo;
     private String descricaoBrinquedo;
     private String imagemBrinquedo;
+    private boolean destaque;
 
     // Construtores
     public BrinquedoEntity() {}
@@ -95,5 +96,13 @@ public class BrinquedoEntity {
 
     public void setImagemBrinquedo(String imagemBrinquedo) {
         this.imagemBrinquedo = imagemBrinquedo;
+    }
+    
+    public boolean isDestaque() {
+        return destaque;
+    }
+
+    public void setDestaque(boolean destaque) {
+        this.destaque = destaque;
     }
 }

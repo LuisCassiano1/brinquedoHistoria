@@ -18,16 +18,11 @@
     </div>
     
     <div class="main-content p-3">
-		<h1 class="titulo-destaque" th:if="${brinquedo.idBrinquedo != null}">Editar Brinquedo</h1>
-		<h1 class="titulo-destaque" th:unless="${brinquedo.idBrinquedo != null}">Novo Brinquedo</h1>
+        <h1 class="titulo-destaque" th:if="${brinquedo.idBrinquedo != null}">Editar Brinquedo</h1>
+        <h1 class="titulo-destaque" th:unless="${brinquedo.idBrinquedo != null}">Novo Brinquedo</h1>
 
-		<form th:action="@{/salvar}"
-		      th:object="${brinquedo}"
-		      method="post"
-		      enctype="multipart/form-data">
-			  
-			  <!-- ID -->
-			  <input type="hidden" th:field="*{idBrinquedo}">
+        <form th:action="@{/salvar}" th:object="${brinquedo}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{idBrinquedo}">
 
             <!-- Código -->
             <div class="mb-3">
@@ -42,16 +37,21 @@
                 <input type="text" th:field="*{nomeBrinquedo}" class="form-control" required>
             </div>
 
-            <!-- Categoria -->
-            <div class="mb-3">
-                <label for="categoria">CATEGORIA:</label>
-                <select th:field="*{categoriaBrinquedo}" class="form-select" required>
-                    <option value="">Selecione...</option>
-                    <option value="Pelúcias">Pelúcias</option>
-                    <option value="Carrinhos">Carrinhos</option>
-                    <option value="Quebra-cabeças">Quebra-cabeças</option>
-                    <!-- Adicione mais categorias se quiser -->
-                </select>
+            <!-- Categoria + Destaque (lado a lado) -->
+            <div class="mb-3 d-flex align-items-center justify-content-between">
+                <div style="flex: 1;">
+                    <label for="categoria">CATEGORIA:</label>
+                    <select th:field="*{categoriaBrinquedo}" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Pelúcias">Pelúcias</option>
+                        <option value="Carrinhos">Carrinhos</option>
+                        <option value="Quebra-cabeças">Quebra-cabeças</option>
+                    </select>
+                </div>
+                <div class="form-check ms-4" style="margin-top: 30px;">
+                    <input type="checkbox" class="form-check-input" id="destaque" th:field="*{destaque}">
+                    <label class="form-check-label" for="destaque">Destaque na Home</label>
+                </div>
             </div>
 
             <!-- Marca -->
@@ -65,12 +65,12 @@
                 <label for="valor">VALOR:</label>
                 <input type="number" th:field="*{valorBrinquedo}" step="0.01" class="form-control" required>
             </div>
-			
-			<!-- Imagem -->
-			<div class="mb-3">
-			    <label for="imagemBrinquedo">IMAGEM:</label>
-			    <input type="file" class="form-control" name="imagem" id="imagemBrinquedo" accept="image/*" required>
-			</div>
+
+            <!-- Imagem -->
+            <div class="mb-3">
+                <label for="imagemBrinquedo">IMAGEM:</label>
+                <input type="file" class="form-control" name="imagem" id="imagemBrinquedo" accept="image/*" required>
+            </div>
 
             <!-- Descrição -->
             <div class="mb-3">
@@ -83,8 +83,9 @@
             <a th:href="@{/adm}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
-	<footer>
-	        <p>&copy; 2025 Brinquedo História - Todos os direitos reservados.</p>
-	    </footer>
+
+    <footer>
+        <p>&copy; 2025 Brinquedo História - Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

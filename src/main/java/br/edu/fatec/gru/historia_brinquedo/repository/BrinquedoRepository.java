@@ -15,4 +15,6 @@ public interface BrinquedoRepository extends JpaRepository<BrinquedoEntity, Long
 	List<BrinquedoEntity> findByCategoriaBrinquedoIgnoreCase(String categoriaBrinquedo);
 
     List<BrinquedoEntity> findByNomeBrinquedoContainingIgnoreCase(String nomeBrinquedo);
+    
+    List<BrinquedoEntity> findByDestaqueTrue();
 }

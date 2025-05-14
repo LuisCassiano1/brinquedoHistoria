@@ -16,6 +16,10 @@ public class BrinquedoService {
     public BrinquedoEntity save(BrinquedoEntity brinquedo) {
         return brinquedoRepository.save(brinquedo);
     }
+    
+    public List<BrinquedoEntity> findByDestaqueTrue() {
+        return brinquedoRepository.findByDestaqueTrue();
+    }
 
     public List<BrinquedoEntity> listAll() {
         return brinquedoRepository.findAll();

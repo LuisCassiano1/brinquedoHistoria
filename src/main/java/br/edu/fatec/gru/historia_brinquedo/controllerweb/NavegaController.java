@@ -32,7 +32,9 @@ public class NavegaController {
     private BrinquedoService brinquedoService;
 
     @GetMapping({"/", "/home"})
-    public String home() {
+    public String home(Model model) {
+        List<BrinquedoEntity> destaques = brinquedoService.findByDestaqueTrue();
+        model.addAttribute("destaques", destaques);
         return "home";
     }
     
