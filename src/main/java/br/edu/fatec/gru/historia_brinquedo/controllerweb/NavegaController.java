@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,7 +62,7 @@ public class NavegaController {
 
         try {
             if (!imagem.isEmpty()) {
-                String nomeArquivo = UUID.randomUUID() + "_" + imagem.getOriginalFilename();
+                String nomeArquivo = imagem.getOriginalFilename();
                 Path caminho = Paths.get("src/main/resources/static/imagens/" + nomeArquivo);
                 Files.createDirectories(caminho.getParent());
                 Files.write(caminho, imagem.getBytes());
