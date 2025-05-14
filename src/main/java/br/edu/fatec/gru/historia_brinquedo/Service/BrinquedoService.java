@@ -31,8 +31,10 @@ public class BrinquedoService {
     
 
     public List<String> listarCategorias() {
-        return List.of("Pelúcia", "Quebra-Cabeças", "HotWheels");
+        return List.of("Pelúcias", "Quebra-cabeças", "Carrinhos");
     }
 
-    
+    public List<BrinquedoEntity> findByCategoriaBrinquedoIgnoreCase(String categoriaBrinquedo) {
+        return brinquedoRepository.findByCategoriaBrinquedoIgnoreCase(categoriaBrinquedo);
+    }
 }

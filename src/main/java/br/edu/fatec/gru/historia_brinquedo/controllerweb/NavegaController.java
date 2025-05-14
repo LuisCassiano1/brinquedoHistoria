@@ -18,15 +18,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.fatec.gru.historia_brinquedo.Service.BrinquedoService;
 import br.edu.fatec.gru.historia_brinquedo.model.BrinquedoEntity;
-import br.edu.fatec.gru.historia_brinquedo.repository.BrinquedoRepository;
 import jakarta.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class NavegaController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(NavegaController.class);
 
     @Autowired
     private BrinquedoService brinquedoService;
-    private BrinquedoRepository brinquedoRepository;
 
     @GetMapping({"/", "/home"})
     public String home() {
@@ -39,24 +42,15 @@ public class NavegaController {
             model.addAttribute("brinquedo", new BrinquedoEntity());
         }
         model.addAttribute("brinquedos", brinquedoService.listAll());
-        model.addAttribute("categorias", Arrays.asList("Pelúcia", "Quebra-Cabeças", "HotWheels"));
+        model.addAttribute("categorias", Arrays.asList("Pelúcias", "Quebra-cabeças", "Carrinhos"));
         return "adm";
-    }
-    
-    @GetMapping("/adm/formulario")
-    public String showForm(Model model) {
-        model.addAttribute("brinquedo", new BrinquedoEntity()); // Objeto para o formulário
-        model.addAttribute("categorias", Arrays.asList(
-        		"Pelúcia", "Quebra-Cabeças", "HotWheels"
-        )); // Lista de categorias
-        return "adm/formulario";
     }
 
     @PostMapping("/salvar")
     public String saveBrinquedo(
         @Valid @ModelAttribute("brinquedo") BrinquedoEntity brinquedo,
         BindingResult result,
-        @RequestParam("imagem") MultipartFile imagem, // <-- aqui recebemos o arquivo
+        @RequestParam("imagem") MultipartFile imagem,
         RedirectAttributes redirectAttributes
     ) {
         if (result.hasErrors()) {
@@ -67,26 +61,25 @@ public class NavegaController {
 
         try {
             if (!imagem.isEmpty()) {
-                // Gera nome seguro para o arquivo
                 String nomeArquivo = UUID.randomUUID() + "_" + imagem.getOriginalFilename();
-                
-                // Caminho onde a imagem será salva
                 Path caminho = Paths.get("src/main/resources/static/imagens/" + nomeArquivo);
                 Files.createDirectories(caminho.getParent());
                 Files.write(caminho, imagem.getBytes());
 
                 brinquedo.setImagemBrinquedo(nomeArquivo);
+                logger.info("Imagem '{}' salva com sucesso.", nomeArquivo);
             }
 
             brinquedoService.save(brinquedo);
+            logger.info("Brinquedo '{}' salvo com sucesso.", brinquedo.getNomeBrinquedo());
             redirectAttributes.addFlashAttribute("successMessage", "Brinquedo salvo com sucesso!");
         } catch (IOException e) {
+            logger.error("Erro ao salvar imagem do brinquedo", e);
             redirectAttributes.addFlashAttribute("erro", "Erro ao salvar a imagem: " + e.getMessage());
         }
 
         return "redirect:/adm";
     }
-
 
     @GetMapping("/sobre")
     public String sobre() {
@@ -101,24 +94,9 @@ public class NavegaController {
     @GetMapping("/adm/formBrinquedo")
     public String exibirFormulario(Model model) {
         model.addAttribute("brinquedo", new BrinquedoEntity());
-        model.addAttribute("categorias", List.of("Pelúcia", "Quebra-Cabeças", "HotWheels"));
+        model.addAttribute("categorias", List.of("Pelúcias", "Quebra-cabeças", "Carrinhos"));
         return "formBrinquedo"; // nome do arquivo HTML real
     }
-
-    //MÉTODO MAIS SIMPLES, SEM TRATAMENTO DE ERROS
-    /*@PostMapping("/criar")
-    public String salvarBrinquedo(
-        @ModelAttribute BrinquedoEntity brinquedo,
-        Model model
-    ) {
-        try {
-            brinquedoService.save(brinquedo);
-            return "redirect:/adm";
-        } catch (Exception ex) {
-            model.addAttribute("erro", ex.getMessage());
-            return "formBrinquedo";
-        }
-    }*/
 
     @GetMapping("/editar/{idBrinquedo}")
     public String editarBrinquedo(@PathVariable Long idBrinquedo, Model model) {
@@ -127,7 +105,7 @@ public class NavegaController {
             return "redirect:/adm";
         }
         model.addAttribute("brinquedo", brinquedo);
-        model.addAttribute("categorias", List.of("Pelúcia", "Quebra-Cabeças", "HotWheels"));
+        model.addAttribute("categorias", List.of("Pelúcias", "Quebra-cabeças", "Carrinhos"));
         return "formBrinquedo";
     }
 
@@ -141,35 +119,35 @@ public class NavegaController {
         }
         return "redirect:/adm";
     }
- // COLOCAR QUANDO A LISTA FUNCIONAR
-    /*@GetMapping("/pelucias")
-    public String mostrarPelucias(Model model) {
-        List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("Pelúcia");
-        model.addAttribute("brinquedos", brinquedos);
-        return "categoria";
-    }
-
-    @GetMapping("/quebraCabecas")
-    public String mostrarQuebraCabecas(Model model) {
-        List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("Quebra-Cabeças");
-        model.addAttribute("brinquedos", brinquedos);
-        return "categoria";
-    }
-
-    @GetMapping("/hotwheels")
-    public String mostrarHotWheels(Model model) {
-        List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria("HotWheels");
-        model.addAttribute("brinquedos", brinquedos);
-        return "categoria";
-    }
     
     @GetMapping("/catalogo/{categoria}")
     public String listarPorCategoria(@PathVariable String categoria, Model model) {
-        List<BrinquedoEntity> brinquedos = brinquedoService.getByCategoria(categoria);
-        model.addAttribute("brinquedos", brinquedos);
+        // Normaliza a categoria vinda da URL
+        switch (categoria.toLowerCase()) {
+            case "pelucias":
+                categoria = "Pelúcias";
+                break;
+            case "carrinhos":
+                categoria = "Carrinhos";
+                break;
+            case "quebra-cabecas":
+            case "quebracabecas":
+                categoria = "Quebra-cabeças";
+                break;
+            default:
+                categoria = categoria; // ou redireciona para erro
+        }
+
+        List<BrinquedoEntity> brinquedos = brinquedoService.findByCategoriaBrinquedoIgnoreCase(categoria);
+
         model.addAttribute("categoria", categoria);
-        return "categoriaBrinquedos"; // essa é a view que você vai criar
-    }*/
+        model.addAttribute("brinquedos", brinquedos != null ? brinquedos : List.of());
+
+        return "categoriaBrinquedos";
+    }
+
+
+
     
     @GetMapping("/brinquedo/{idBrinquedo}")
     public String mostrarDetalhesBrinquedo(@PathVariable Long idBrinquedo, Model model) {
@@ -178,7 +156,7 @@ public class NavegaController {
             return "redirect:/catalogo"; // ou uma página de erro
         }
         model.addAttribute("brinquedo", brinquedo);
-        return "detalhesBrinquedo"; // essa é a view que você vai criar
+        return "detalhesBrinquedo";
     }
 
 }

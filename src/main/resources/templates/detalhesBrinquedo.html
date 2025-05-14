@@ -30,19 +30,19 @@
         </p>
 
         <div class="detalhes-container">
-            <!-- Imagem -->
-			<!--
-            <div class="imagem-detalhe">
-                <img th:src="@{'/imagens/' + ${brinquedo.imagemBrinquedo}}" alt="Imagem do brinquedo" class="img-fluid">
-            </div>
-			-->
+			
+			<!-- Imagem -->
+			<div class="imagem-detalhe">
+			    <img th:src="@{'/imagens/' + ${brinquedo.imagemBrinquedo}}" alt="Imagem do brinquedo" class="img-fluid">
+			</div>
+
 
             <!-- Informações principais -->
             <div class="info-detalhe">
                 <p><strong>Código do Brinquedo:</strong> <span th:text="${brinquedo.idBrinquedo}">123</span></p>
                 <h2 th:text="${brinquedo.nomeBrinquedo}">Nome do Brinquedo</h2>
                 <div class="valor-brinquedo">
-                    R$ <span th:text="${#numbers.formatDecimal(brinquedo.valorBrinquedo, 1, 'POINT', 2, 'ZERO')}">0,00</span>
+					R$<td th:text="${#numbers.formatDecimal(brinquedo.valorBrinquedo, 1, 2, 'COMMA')}">0,00</td>
                 </div>
                 <p><strong>Descrição:</strong> <span th:text="${brinquedo.descricaoBrinquedo}">Descrição</span></p>
             </div>

@@ -21,9 +21,9 @@ public class BrinquedoController {
         return brinquedoService.listAll();
     }
 
-    @GetMapping("/{id}")
-    public BrinquedoEntity getById(@PathVariable("id") Long id) {
-        return brinquedoService.getById(id);
+    @GetMapping("/{idBrinquedo}")
+    public BrinquedoEntity getById(@PathVariable("idBrinquedo") Long idBrinquedo) {
+        return brinquedoService.getById(idBrinquedo);
     }
     // COLOCAR QUANDO A LISTA FUNCIONAR
     /*@GetMapping("/nome/{nome}")
@@ -36,9 +36,9 @@ public class BrinquedoController {
         return brinquedoService.save(brinquedo);
     }
 
-    @PutMapping("/{id}")
-    public BrinquedoEntity update(@RequestBody BrinquedoEntity brinquedo, @PathVariable Long id) {
-        BrinquedoEntity brinquedoExistente = brinquedoService.getById(id);
+    @PutMapping("/{idBrinquedo}")
+    public BrinquedoEntity update(@RequestBody BrinquedoEntity brinquedo, @PathVariable Long idBrinquedo) {
+        BrinquedoEntity brinquedoExistente = brinquedoService.getById(idBrinquedo);
         brinquedoExistente.setNomeBrinquedo(brinquedo.getNomeBrinquedo());
         brinquedoExistente.setCategoriaBrinquedo(brinquedo.getCategoriaBrinquedo());
         brinquedoExistente.setMarcaBrinquedo(brinquedo.getMarcaBrinquedo());
@@ -47,9 +47,9 @@ public class BrinquedoController {
         return brinquedoService.save(brinquedoExistente);
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        brinquedoService.delete(id);
+    @DeleteMapping("/{idBrinquedo}")
+    public String delete(@PathVariable("idBrinquedo") Long idBrinquedo) {
+        brinquedoService.delete(idBrinquedo);
         return "Brinquedo excluído com sucesso";
     }
 }
