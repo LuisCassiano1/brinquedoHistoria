@@ -1,3 +1,7 @@
+html, body {
+    overflow-x: hidden;
+}
+
 .main-content {
     margin-left: 320px;
     padding: 20px;
@@ -33,7 +37,9 @@ button {
     text-align: center;
     justify-content: center;
     border-bottom: 3px solid #000;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
+	padding-left: 250px;
+	padding-top: 15px;
 }
 
 #titulo-menu {
@@ -47,7 +53,7 @@ button {
 }
 
 .sidebar {
-    width: 300px;
+    width: 320px;
 	height: 100vh;
 	overflow-y: auto;
     background-color: #6d6d6d;
@@ -57,6 +63,11 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.sidebar-img {
+    width: 300px; /* ou outro valor desejado */
+    height: 200px;
 }
 
 .sidebar .menu-item {
@@ -69,7 +80,7 @@ button {
     text-decoration: none;
     font-size: 25px;
     transition: background-color 0.3s;
-    text-align: flex-start;
+    text-align: center;
     border-top: 1px solid black;
 }
 
@@ -82,8 +93,8 @@ button {
 
 .sidebar {
     border: 2px solid #555;
-    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	border-bottom: none;
 }
 
 .destaque {
@@ -105,17 +116,7 @@ button {
     transition: background-color 0.3s;
     text-align: flex-start;
     padding-left: 30px;
-}
-
-.destaque .titulo-destaque::after {
-    content: "";
-    position: absolute;
-    bottom: 10px;
-    right: 0;
-    left: 2%;
-    width: 95%;            /* Largura menor que total */
-    height: 1px;
-    background-color: #555;
+	padding-bottom: 15px;
 }
 
 .grid-container {
@@ -134,7 +135,7 @@ button {
 }
 
 .grid-item img {
-    max-width: 50%; /* controla o tamanho das imagens */
+    max-width: 60%; /* controla o tamanho das imagens */
     height: auto;
     cursor: pointer;
 }
@@ -244,7 +245,7 @@ footer {
 .detalhes-container {
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 20px;
     align-items: flex-start;
     margin-top: 30px;
 }
@@ -336,3 +337,19 @@ table.table tbody tr:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+.brinquedo-categoria-img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: white;
+}
+
+.categoria-home-page .grid-item img {
+    max-width: 30%; /* ou outro valor menor, como 30% */
+}
+
+.sidebar {
+    border-bottom: none;
+}
